@@ -9,6 +9,7 @@ def jump(t, x, y):
 def make_turtle(x, y):
     t = turtle.Turtle()
     t.shape('turtle')
+    t.speed(0)
     jump(t, x, y)
     return t
 
