@@ -26,9 +26,15 @@ while ts[0].distance(ts[1]) > 10:
     for t in ts:
         t.forward(5)
     
-    for i in range(4):
-        j = (i + 1) % 4   # index for next neighbour
+    for i in range(4):   
+        j=(i+1)%4 #i börjar på 3 och räknar sedan nedåt?????
+
         ts[i].setheading(ts[i].towards(ts[j]))
+
+def smooth(a):
+    new_lst = []
+    
+
 
 
                          
