@@ -17,7 +17,7 @@ def move_random(t):
     vinkel = random.randint(-45,45)
     strackan = random.randint(0,25)
 
-    if t.xcor() < 250 and t.xcor() > -250 and t.ycor() < 250 and t.ycor() > -250:
+    if abs(t.xcor()) < 250 and abs(t.ycor()) < 250:
         t.left(vinkel)
     
     else:
@@ -53,7 +53,7 @@ for i in range(500):
     move_random(turtleTwo)
 
     if turtleOne.distance(turtleTwo) < 50:
-        turtleOne.write('close')
+        turtleTwo.write('close')
         turtleClose = turtleClose + 1
 
 print(turtleClose)

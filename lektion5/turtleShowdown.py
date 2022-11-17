@@ -33,7 +33,7 @@ def tricolore(x,y,h):
     rectangle(x+w,y,w,h,'white')
     rectangle(x+2*w,y,w,h, 'red')
 
-def pentagram(x,y,side,color):
+def pentagram(x,y,side,color = 'green'):
     t = make_turtle(x,y)
     t.speed(0)
     t.hideturtle()
@@ -45,10 +45,6 @@ def pentagram(x,y,side,color):
         t.forward(side)
         t.right(180-36)
     t.end_fill()
-
-farg = 'green'
-
-farg = input("Vilken färg ska pentagrammen ha? ")
 
 #start värden för rektangel
 h = 200
@@ -66,8 +62,8 @@ pentaStartY = h + w
 tricolore(rectStartX,rectStartY,h)
 
 for i in range(0,5):
-    pentagram(pentaStartX + (i*w), pentaStartY, w, farg)
-    pentagram(pentaStartX + (i*w), -pentaStartY + h - w, w , farg)
+    pentagram(pentaStartX + (i*w), pentaStartY, w)
+    pentagram(pentaStartX + (i*w), -pentaStartY + h - w, w)
 
 
 
