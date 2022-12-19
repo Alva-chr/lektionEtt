@@ -10,14 +10,14 @@ data = fil.read()
 
 wordlist = re.findall(r'[a-zA-ZåäöÅÄÖ]+', data)
 
-count = {}               # Skapa ett tomt lexikon
-for element in wordlist:   # Iterera över tecknen
-    if type(element) == str:             # Vi intresserar oss bara för ord
-        element = element.lower()   # Skiljer inte på små och stora
-        if element in count:      # Om denna bokstav redan finns som nyckel
-            count[element] += 1   # Öka dess frekvens
-        else:                       # annars
-            count[element] = 1    # Lägg in den med frekvensen 1
+count = {}               
+for element in wordlist:   
+    if type(element) == str:             
+        element = element.lower()   
+        if element in count:      
+            count[element] += 1   
+        else:                       
+            count[element] = 1    
 
 count_lst = list(count.items())
 
