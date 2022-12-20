@@ -32,15 +32,15 @@ class Lane:
         result += ']'
         return result
 
+    #lägger till en bil i sista rutan 
     def enter(self, vehicle):
         self.lane[-1] = vehicle     
-        # Implement this method.
 
+    #Kollar om den sista rutan i filen är en bil eller inte
     def last_free(self):
         return self.lane[-1] == 'None'
-        # Implement this method.
 
-    #Klar
+    #Flyttar fram bilarna ett steg 
     def step(self):
         for index, element in enumerate(self.lane):
             #Kollar att elementet är en bil
@@ -49,22 +49,22 @@ class Lane:
                 #Kollar om elementet framför är inte är en bil
                 if index-1 >= 0:
                     if self.lane[index-1] == 'None':
+                        #Byter plats på bilen och elementet innan
                         self.lane[index-1] = self.lane[index]
                         self.lane[index] = 'None'
 
-                    #Byter plats på bilen och elementet innan
+                    
 
 
-    #KLAR
+    #Visar den första bilen i filen
     def get_first(self):
-        """Return the first vehicle in the lane, or None."""
         if self.lane[0] == 'None':
             return 'None'
         
         else:
             return self.lane[0]
 
-    #KLAR
+    #Tar bort den första bilen i filen och erstätter med none
     def remove_first(self):
         if self.get_first == 'None':
             return 'None'
@@ -73,7 +73,7 @@ class Lane:
             self.lane.insert(0, 'None')
             return self.lane.pop(1)
 
-    #KLAR
+    #Kollar antalet bilar i filen
     def number_in_lane(self):
         bilar = 0
 
@@ -84,7 +84,7 @@ class Lane:
 
         return bilar
 
-
+#Kopierat
 class DestinationGenerator:
     """ Generates a sequence of destinations (None, 'W', 'S') """
 
@@ -116,6 +116,7 @@ class Light:
         self.green_period = green_period
         self.time = 0
 
+    #presenterar datan vettigt
     def __str__(self):
         if self.is_green() == True:
             return '(G)'
@@ -123,10 +124,9 @@ class Light:
         else:
             return '(R)'
 
-    #Tar ett steg
+    #Tar ett light periodsteg
     def step(self):
-        """Take one light time step."""
-        self.time = (self.time +1)%self.period
+                self.time = (self.time +1)%self.period
 
     #Checkar om den är i en grön period
     def is_green(self):
@@ -136,5 +136,38 @@ class Light:
         else:
             return False
 
+class TrafficSystem:
+    """Defines a traffic system"""
 
+    def __init__(self):
+        self.l1 = Lane(5)
+        self.l2 = Lane(5)
+        self.leight = Light(10, 8)
+        dstG = DestinationGenerator()
+        self.time = 0
+
+    def snapshot(self):
+        """Print a snap shot of the current state of the system."""
+        print(f'Time step {self.time}')
+
+    def step(self):
+        """Take one time step for all components."""
+        self.time += 1
+
+from statistics import mean, median
+from time import sleep
+
+def main():
+    ts = TrafficSystem()
+    for i in range(100):
+        ts.snapshot()
+        ts.step()
+        sleep(0.1) # Pause for 0.1 s.
+    print('\nFinal state:')
+    ts.snapshot()
+    print()
+
+
+if __name__ == '__main__':
+    main()
 
