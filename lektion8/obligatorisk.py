@@ -41,7 +41,7 @@ fileName = "C:\\Users\\alvac\programmeringEtt\obligatoriska\lektion8\CO2Emission
 data = load_csv(fileName)
 
 #data som ska redovisas
-nordLand = {'dnk' : 'blue', 'fin' : 'cyan', 'isl' : 'yellow', 'nor' : 'orange', 'swe' : 'red'}
+nordLand = [('dnk', 'blue'), ('fin', 'cyan'), ('isl', 'yellow'), ('nor', 'orange'), ('swe', 'red')]
 
 #tiden datan ska visas över
 time = list(range(1960, 2015))
@@ -56,11 +56,17 @@ plt.title('Uppgift 8')
 
 #Plottar 3 grafer per land av nordland
 for i in nordLand:
-    ax.plot(time, data[i[0]], label=i[0], color = i[1], linestyle =':')
-    ax.plot(time, smooth_a(data[i[0]], 5), label=i[0], color = i[1])
-    ax.plot(time, smooth_b(data[i[0]], 5), label=i[0], color = i[1], linestyle ='--')
+    #Plottar efter endast punkterna
+    ax.plot(time, data[i[0]], color = i[1], linestyle =':')
 
+    #plottar med mindre brus
+    ax.plot(time, smooth_a(data[i[0]], 5), label= i[0], color = i[1])
+    ax.plot(time, smooth_b(data[i[0]], 5), color = i[1], linestyle ='--')
+
+#Sätter ut inforutan
 ax.legend()
+
+#Visar grafen
 plt.show()
 
 
