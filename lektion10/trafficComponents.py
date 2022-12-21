@@ -9,29 +9,24 @@ class Vehicle:
     def __str__(self):
         return f'Vehicle ({self.destination}, {self.borntime})'
 
-    def dst(self):
-        return self.destination
-
-    
-
 
 #Klass för att representera en fil med bilar
 class Lane:
 
-    #konstrukotor, skapar en length lång lista KLAR
+    #konstrukotor, skapar en length lång lista 
     def __init__(self, length):
-        self.lane = ['None' for x in range(length)]
+        self.lane = [None for x in range(length)]
 
+    #En string representation av datan, där None representeras av . och bilen av dess destination
     def __str__(self):
-        """String representation of lane contents."""
         result = '['                        
-        for i in self.lane:             #Adds a dot if there is 'None' and otherwise writes the first letter of the car.
-            if i == 'None':
+        for i in self.lane:             
+            if i == None:
                 result += '.'
             else:
-                result += i.dst()
+                result += i.destination
         result += ']'
-        return str(result)
+        return result
 
     #lägger till en bil i sista rutan 
     def enter(self, vehicle):
@@ -39,36 +34,33 @@ class Lane:
 
     #Kollar om den sista rutan i filen är en bil eller inte
     def last_free(self):
-        return self.lane[-1] == 'None'
+        return self.lane[-1] == None
 
     #Flyttar fram bilarna ett steg 
     def step(self):
         for index, element in enumerate(self.lane):
+
             #Kollar att elementet är en bil
-            if self.lane[index] != 'None':
+            if self.lane[index] != None:
 
                 #Kollar om elementet framför är inte är en bil
                 if index-1 >= 0:
-                    if self.lane[index-1] == 'None':
+                    if self.lane[index-1] == None:
                         #Byter plats på bilen och elementet innan
                         self.lane[index-1] = self.lane[index]
-                        self.lane[index] = 'None'
+                        self.lane[index] = None
 
     #Visar den första bilen i filen
     def get_first(self):
-        if self.lane[0] == 'None':
-            return 'None'
-        
-        else:
-            return self.lane[0]
+        return self.lane[0]
 
     #Tar bort den första bilen i filen och erstätter med none
     def remove_first(self):
-        if self.get_first == 'None':
-            return 'None'
+        if self.get_first == None:
+            return None
 
         else:
-            self.lane.insert(0, 'None')
+            self.lane.insert(0, None)
             return self.lane.pop(1)
 
     #Kollar antalet bilar i filen
@@ -77,7 +69,7 @@ class Lane:
 
         #Om platsen inte är tom läggs en till på antalet bilar
         for element in self.lane:
-            if element != 'None':
+            if element != None:
                 bilar += 1
 
         return bilar
@@ -126,7 +118,7 @@ class Light:
 
     #Tar ett light periodsteg
     def step(self):
-                self.time = (self.time +1)%self.period
+        self.time = (self.time +1)%self.period
 
     #Checkar om den är i en grön period
     def is_green(self):

@@ -64,7 +64,7 @@ for i in nordLand:
     ax.plot(time, smooth_b(data[i[0]], 5), color = i[1], linestyle ='--')
 
 #Sätter ut inforutan
-ax.legend(loc='upper left')
+ax.legend()
 
 #Visar grafen
 plt.show()
